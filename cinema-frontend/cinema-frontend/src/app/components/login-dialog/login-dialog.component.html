@@ -1,0 +1,14 @@
+<p-dialog header="{{Title}}" [(visible)]="isVisible" [responsive]="true">
+    <div class="input-padding">
+        <span class="ui-float-label col-sm-12 ">
+            <input id="float-input" type="text" size="30" pInputText [(ngModel)]="username">
+            <label for="float-input">Username</label>
+        </span>
+        <span class="ui-float-label col-sm-12 passowrd-padding">
+            <input type="password" pPassword [(ngModel)]="password" />
+        </span>
+    </div>
+    <p-footer>
+        <p-button label="Login" styleClass="ui-button-success" (onClick)="loginHandleClick($event)"></p-button>
+    </p-footer>
+</p-dialog>

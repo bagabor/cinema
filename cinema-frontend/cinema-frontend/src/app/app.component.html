@@ -1,0 +1,30 @@
+<p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="toaster">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+    </ng-template>
+</p-toast>
+
+
+<app-header></app-header>
+
+<div class="main-background col-md-12">
+    <h3 class="title">Book a ticket!</h3>
+    <div class="dropdown-style">
+        <p-dropdown [options]="movies" [(ngModel)]="selectedMovie" placeholder="Select a Movie" optionLabel="title" [showClear]="true"
+        (onChange)="onChange($event)"></p-dropdown>
+    </div>
+    <div class="dropdown-style">
+        <p-dropdown [options]="screeningTimes" [(ngModel)]="selectedScreening" placeholder="Select a Screening" optionLabel="time" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="dropdown-style">
+        <p-dropdown [options]="numberOfTickets" [(ngModel)]="selectedTicketNumber" placeholder="Select tickets" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="dropdown-style reverse-button-container">
+        <p-button id="reverse-button" class="reverse-button" label="Reverse" styleClass="ui-button-success" (onClick)="handleClick($event)"></p-button>
+    </div>
+</div>
+

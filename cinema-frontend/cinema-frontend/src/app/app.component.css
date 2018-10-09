@@ -1,0 +1,25 @@
+.main-background{
+    background: #1e1e1e;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.title{
+    padding: 30px;
+}
+
+.dropdown-style{
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 8%;
+}
+
+.reverse-button-container{
+    margin-right: 2%;
+    float: right;
+}
+
+#reverse-button{
+    display: none;
+}

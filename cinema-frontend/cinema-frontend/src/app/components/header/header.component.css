@@ -1,0 +1,17 @@
+.header-style{
+    height: 100px;
+    background: #252526;
+    border-radius: 20px;
+}
+
+.header-button{
+    width: 200px;
+    text-align: center !important;
+    float: right;
+    margin-right: 2%;
+    margin-top: 20px;
+}
+
+#logout-button {
+    display: none;
+}
