@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="1" author="Gabor Balatonyi">
+
+		<createTable tableName="User">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					unique="true" />
+			</column>
+			<column name="username" type="varchar(10)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="password" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="varchar(45)">
+				<constraints nullable="false" unique="true" />
+			</column>
+		</createTable>
+
+		<createTable tableName="Reservation">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					unique="true" />
+			</column>
+			<column name="tickets" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="screening_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseColumnNames="user_id" baseTableName="Reservation"
+			constraintName="fk_user_reservation" referencedColumnNames="id"
+			referencedTableName="User" />
+
+		<createTable tableName="Screening">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					unique="true" />
+			</column>
+ 			<column name="screening_time" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="free_seats" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="movie_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseColumnNames="screening_id" baseTableName="Reservation"
+			constraintName="fk_screening_reservation" referencedColumnNames="id"
+			referencedTableName="Screening" />
+
+		<createTable tableName="Movie">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					unique="true" />
+			</column>
+			<column name="title" type="varchar(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="length" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="movie_type" type="varchar(15)" />
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseColumnNames="movie_id" baseTableName="Screening"
+			constraintName="fk_movie_screening" referencedColumnNames="id"
+			referencedTableName="Movie" />
+	</changeSet>
+
+	<changeSet id="2" author="Gabor Balatonyi">
+		<insert tableName="Movie">
+			<column name="id" value="1" />
+			<column name="title" value="Action Movie" />
+			<column name="length" value="120" />
+			<column name="movie_type" value="ACTION" />
+		</insert>
+
+ 		<insert tableName="Movie">
+			<column name="id" value="2" />
+			<column name="title" value="Horror Movie" />
+			<column name="length" value="90" />
+			<column name="movie_type" value="HORROR" />
+		</insert>
+
+		<insert tableName="Movie">
+			<column name="id" value="3" />
+			<column name="title" value="Document Movie" />
+			<column name="length" value="200" />
+			<column name="movie_type" value="DOCUMENT" />
+		</insert>
+
+		<insert tableName="Screening">
+			<column name="id" value="1" />
+			 <column name="screening_time" valueDate="2018-10-10 16:00:00" />
+			<column name="free_seats" value="200" />
+			<column name="movie_id" value="1" />
+		</insert>
+
+		<insert tableName="Screening">
+			<column name="id" value="2" />
+		 	<column name="screening_time" valueDate="2015-02-10 18:30:00" />
+			<column name="free_seats" value="200" />
+			<column name="movie_id" value="2" />
+		</insert>
+
+		<insert tableName="Screening">
+			<column name="id" value="3" />
+		 	<column name="screening_time" valueDate="2015-02-10 20:15:00" />
+			<column name="free_seats" value="200" />
+			<column name="movie_id" value="1" />
+		</insert>
+
+		<insert tableName="User">
+			<column name="id" value="1" />
+			<column name="username" value="Gabor" />
+			<column name="password"
+				value="$2a$10$Vlmx8EBk1WYi2Ro14dNUSe1bpDtgiyaCeW/ezoAOuvGkhOszFSbvS" />
+			<column name="email" value="gabor@gabor.hu" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
